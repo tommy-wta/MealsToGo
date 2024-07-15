@@ -3,7 +3,7 @@ import { themeFonts, themeFontWeights, themeFontSizes } from "./fonts";
 import { sizes } from "./sizes";
 import { space, lineHeights } from "./spacings";
 
-interface Theme {
+export interface Theme {
     themeColors: typeof themeColors;
     themeFonts: typeof themeFonts;
     themeFontWeights: typeof themeFontWeights;

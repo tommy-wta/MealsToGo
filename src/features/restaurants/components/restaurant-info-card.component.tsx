@@ -1,60 +1,21 @@
 import React, { FC } from "react";
-import { Card } from "react-native-paper";
-import styled from "styled-components/native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import openIcon from "../../../../assets/openIcon";
-import { View, Image } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../components/typography/text.component";
+import {
+    RestaurantCard,
+    RestaurantCardCover,
+    Info,
+    Address,
+    RatingRow,
+    RowSection,
+    OpenStatus,
+    TemporarilyCloseText,
+    Icon
+} from "./restaurant-info-card.styles"
 
-const Title = styled.Text`
-    font-family: ${(props) => props.theme.themeFonts.heading};
-    font-size: ${(props) => props.theme.themeFontSizes.body};
-    color: ${(props) => props.theme.themeColors.ui.primary};
-`;
-
-const RestaurantCard = styled(Card)`
-    backgroundColor: ${(props) => props.theme.themeColors.background.primary};
-`
-
-const RestaurantCardCover = styled(Card.Cover)`
-    font-family: ${(props) => props.theme.themeFonts.body};
-    padding: ${(props) => props.theme.space[3]};
-    backgroundColor: ${(props) => props.theme.themeColors.background.primary};
-`
-
-const Info =  styled.View`
-    padding: ${(props) => props.theme.space[3]};
-`
-
-const Address = styled.Text`
-    font-family: ${(props) => props.theme.themeFonts.body};
-    font-size: ${(props) => props.theme.themeFontSizes.caption};
-    color: ${(props) => props.theme.themeColors.ui.secondary};
-`
-
-const RatingRow =  styled.View`
-    flex-direction: row;
-    padding-top: ${(props) => props.theme.space[2]};
-    padding-bottom: ${(props) => props.theme.space[2]};
-`
-
-const OpenStatus = styled.View`
-    flex: 1;
-    flex-direction: row;
-    justify-content: flex-end;
-`
-
-const RowSection = styled.View`
-    flex-direction: row;
-    align-items: center;
-`
-
-const TemporarilyCloseText = styled.Text`
-    color: red;
-    variant: label;
-`
-  
 interface Restaurant {
     name?: string;
     icon?: string;
@@ -86,7 +47,7 @@ export const RestaurantInfoCard: FC<RestaurantInfoProps> = ({ restaurant = {} })
         <RestaurantCard elevation={5}>
             <RestaurantCardCover key={name} source={{uri: photos[0]}}/>
             <Info>
-                <Title>{name}</Title>
+                <Text variant='label'>{name}</Text>
                 <RowSection>
                     <RatingRow>
                         {ratingArray.map((_, i) => (
@@ -101,7 +62,7 @@ export const RestaurantInfoCard: FC<RestaurantInfoProps> = ({ restaurant = {} })
                             {isOpenNow && <SvgXml xml={openIcon} width={20} height={20} />}
                         </Spacer>
                         <Spacer position="left" size="large">
-                            <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+                            <Icon source={{ uri: icon }} />
                         </Spacer>
                     </OpenStatus>
                 </RowSection>
