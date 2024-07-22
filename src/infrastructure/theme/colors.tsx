@@ -6,9 +6,20 @@ interface ColorGroups {
 
 interface ThemeColors {
   brand: ColorGroups;
-  ui: ColorGroups & { tertiary: string; quaternary: string; disabled: string; error: string; success: string; };
+  ui: ColorGroups & {
+    tertiary: string;
+    quaternary: string;
+    disabled: string;
+    error: string;
+    success: string;
+  };
   background: ColorGroups;
-  text: ColorGroups & { disabled: string; inverse: string; error: string; success: string; };
+  text: ColorGroups & {
+    disabled: string;
+    inverse: string;
+    error: string;
+    success: string;
+  };
 }
 
 export const themeColors: ThemeColors = {
@@ -25,6 +36,7 @@ export const themeColors: ThemeColors = {
     disabled: "#DEDEDE",
     error: "#D0421B",
     success: "#138000",
+    loading: "#FFA500",
   },
   background: {
     primary: "#FFFFFF",
@@ -38,4 +50,4 @@ export const themeColors: ThemeColors = {
     error: "#D0421B",
     success: "#138000",
   },
-}
+};
