@@ -6,10 +6,7 @@ import styled from "styled-components/native";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import { theme } from "../../../infrastructure/theme";
-
-const SearchContainer = styled.View`
-  padding: ${(props) => props.theme.space[3]};
-`;
+import { Search } from "../components/search.component";
 
 const Loading = styled(ActivityIndicator)`
   margineleft: -25;
@@ -30,13 +27,7 @@ export const RestaurantsScreen = () => {
           />
         </View>
       )}
-      <SearchContainer>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={setSearchQuery}
-          value={searchQuery}
-        />
-      </SearchContainer>
+      <Search />
       <FlatList
         data={restaurants}
         renderItem={({ item }) => <RestaurantInfoCard restaurant={item} />}

@@ -34,7 +34,6 @@ export const restaurantTransform = (
   result: Restaurant[] = [{ name: "A", rating: 1, vicinity: "B", photos: [] }]
 ) => {
   return result.map((restaurant) => {
-    console.log(`Rest: ${restaurant}`);
     /*
     restaurant.photos = restaurant.photos.map((p) => {
       return mockImages[Math.ceil(Math.random() * mockImages.length)];
