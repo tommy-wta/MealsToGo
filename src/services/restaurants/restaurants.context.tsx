@@ -4,9 +4,11 @@ import React, {
   useEffect,
   useMemo,
   ReactNode,
+  useContext,
 } from "react";
 
 import { restaurantsRequest, restaurantTransform } from "./restaurants.service";
+import { LocationContext } from "../location/location.context";
 
 export interface Restaurant {
   name: string;
@@ -39,11 +41,14 @@ export const RestaurantsContextProvider = ({
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
+  const { location } = useContext(LocationContext);
 
-  const retrieveRestaurants = () => {
+  const retrieveRestaurants = (inputLocation: string) => {
     setIsLoading(true);
+    setRestaurants([]);
+
     setTimeout(() => {
-      restaurantsRequest()
+      restaurantsRequest(inputLocation)
         .then(restaurantTransform)
         .then((result) => {
           setIsLoading(false);
@@ -57,8 +62,12 @@ export const RestaurantsContextProvider = ({
   };
 
   useEffect(() => {
-    retrieveRestaurants();
-  }, []);
+    if (location) {
+      console.log(`location: ${location}`);
+      const locationString = `${location?.lat},${location?.lng}`;
+      retrieveRestaurants(locationString);
+    }
+  }, [location]);
 
   return (
     <RestaurantsContext.Provider

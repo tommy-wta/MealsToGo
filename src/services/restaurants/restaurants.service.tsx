@@ -40,6 +40,7 @@ export const restaurantTransform = (
     });*/
     return {
       ...restaurant,
+      address: restaurant.vicinity,
       isOpenNow: restaurant.opening_hours?.open_now ?? false,
       isClosedTemporarily: restaurant.business_status === "CLOSED_TEMPORARILY",
       photos: restaurant.photos,

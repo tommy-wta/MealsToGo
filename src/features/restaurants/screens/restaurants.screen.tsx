@@ -8,9 +8,7 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 import { theme } from "../../../infrastructure/theme";
 import { Search } from "../components/search.component";
 
-const Loading = styled(ActivityIndicator)`
-  margineleft: -25;
-`;
+const Loading = styled(ActivityIndicator)``;
 
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
