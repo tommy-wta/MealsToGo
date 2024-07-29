@@ -3,22 +3,9 @@ import { Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import { RestaurantsNavigator } from "./restaurant.navigator";
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 const Tab = createBottomTabNavigator();
-
-const MapScreen = () => {
-  return (
-    <>
-      <SafeArea>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Text>Map!</Text>
-        </View>
-      </SafeArea>
-    </>
-  );
-};
 
 const SettingsScreen = () => {
   return (
