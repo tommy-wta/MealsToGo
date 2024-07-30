@@ -17,5 +17,5 @@ export const locationTransform = (searchResult: City) => {
   const geometry = formattedResponse.results[0];
   const { lat, lng } = geometry.geometry.location;
   console.log({ lat, lng });
-  return { lat, lng };
+  return { lat, lng, viewPort: geometry.geometry.viewport };
 };

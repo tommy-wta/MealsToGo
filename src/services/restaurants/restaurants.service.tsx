@@ -24,6 +24,7 @@ export const restaurantsRequest = (
         photos: result.photos.map((p) => {
           return mockImages[Math.ceil(Math.random() * mockImages.length)];
         }),
+        geometry: result.geometry,
       }));
       resolve(transformedResults);
     }
@@ -31,7 +32,30 @@ export const restaurantsRequest = (
 };
 
 export const restaurantTransform = (
-  result: Restaurant[] = [{ name: "A", rating: 1, vicinity: "B", photos: [] }]
+  result: Restaurant[] = [
+    {
+      name: "A",
+      rating: 1,
+      vicinity: "B",
+      photos: [],
+      geometry: {
+        location: {
+          lat: 37.77361,
+          lng: -122.421622,
+        },
+        viewport: {
+          northeast: {
+            lat: 37.7750214302915,
+            lng: -122.4202089697085,
+          },
+          southwest: {
+            lat: 37.7723234697085,
+            lng: -122.4229069302915,
+          },
+        },
+      },
+    },
+  ]
 ) => {
   return result.map((restaurant) => {
     /*

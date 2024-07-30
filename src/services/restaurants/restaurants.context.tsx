@@ -10,6 +10,21 @@ import React, {
 import { restaurantsRequest, restaurantTransform } from "./restaurants.service";
 import { LocationContext } from "../location/location.context";
 
+interface ViewPort {
+  northeast: GeoLocation;
+  southwest: GeoLocation;
+}
+
+interface GeoLocation {
+  lat: number;
+  lng: number;
+}
+
+interface RestaurantGeometry {
+  location: GeoLocation;
+  viewport: ViewPort;
+}
+
 export interface Restaurant {
   name: string;
   rating?: number; // Rating is now optional
@@ -17,6 +32,7 @@ export interface Restaurant {
   opening_hours?: { open_now: boolean };
   business_status?: string;
   photos: string[];
+  geometry: RestaurantGeometry;
 }
 
 interface RestaurantContextData {
