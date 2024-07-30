@@ -25,6 +25,7 @@ export const restaurantsRequest = (
           return mockImages[Math.ceil(Math.random() * mockImages.length)];
         }),
         geometry: result.geometry,
+        placeId: result.place_id,
       }));
       resolve(transformedResults);
     }
@@ -54,6 +55,7 @@ export const restaurantTransform = (
           },
         },
       },
+      placeId: "xx",
     },
   ]
 ) => {

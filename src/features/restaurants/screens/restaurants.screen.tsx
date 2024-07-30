@@ -7,7 +7,6 @@ import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import { theme } from "../../../infrastructure/theme";
 import { Search } from "../components/search.component";
-import { NavigationProp, RouteProp } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Restaurant } from "../../../services/restaurants/restaurants.context";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -45,7 +44,7 @@ export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {
-          console.log(`Item: ${item.name}`);
+          console.log(`Item: ${item.name}: ${item.placeId}`);
           return (
             <TouchableOpacity
               onPress={() =>

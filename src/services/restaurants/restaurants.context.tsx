@@ -33,6 +33,7 @@ export interface Restaurant {
   business_status?: string;
   photos: string[];
   geometry: RestaurantGeometry;
+  placeId: string;
 }
 
 interface RestaurantContextData {
