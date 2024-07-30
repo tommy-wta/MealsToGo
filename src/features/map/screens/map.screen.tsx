@@ -5,13 +5,14 @@ import { Search } from "../components/search.component";
 import { LocationContext } from "../../../services/location/location.context";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import { MapCallout } from "../components/map-callout.components";
+import { RestaurantsScreenProps } from "../../restaurants/screens/restaurants.screen";
 
 const Map = styled(MapView)`
   height: 100%;
   width: 100%;
 `;
 
-export const MapScreen = () => {
+export const MapScreen: React.FC<RestaurantsScreenProps> = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants } = useContext(RestaurantsContext);
   const [latDelta, setLatDelta] = useState(0);
@@ -48,7 +49,13 @@ export const MapScreen = () => {
                 longitude: restaurant.geometry.location.lng,
               }}
             >
-              <Callout>
+              <Callout
+                onPress={() =>
+                  navigation.navigate("Restaurant Detail", {
+                    restaurant: restaurant,
+                  })
+                }
+              >
                 <MapCallout restaurant={restaurant} />
               </Callout>
             </Marker>

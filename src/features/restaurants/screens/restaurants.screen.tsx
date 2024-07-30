@@ -19,7 +19,7 @@ export type RootStackParamList = {
   "Restaurant Detail": { restaurant: Restaurant }; // replace 'Restaurant' with the type of your restaurant object
 };
 
-type RestaurantsScreenProps = StackScreenProps<
+export type RestaurantsScreenProps = StackScreenProps<
   RootStackParamList,
   "Restaurants"
 >;
