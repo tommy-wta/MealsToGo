@@ -15,6 +15,7 @@ import {
   TemporarilyCloseText,
   Icon,
 } from "./restaurant-info-card.styles";
+import { FavoriteIconButton } from "../../../components/favorites/favorite.component";
 
 interface Restaurant {
   name?: string;
@@ -51,6 +52,7 @@ export const RestaurantInfoCard: FC<RestaurantInfoProps> = ({
 
   return (
     <RestaurantCard elevation={5}>
+      <FavoriteIconButton />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>

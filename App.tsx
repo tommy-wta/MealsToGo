@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { Navigation } from "./src/infrastructure/navigation";
+import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 
 import {
   useFonts as useOswald,
@@ -25,13 +26,15 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <NavigationContainer>
-              <Navigation />
-            </NavigationContainer>
-          </RestaurantsContextProvider>
-        </LocationContextProvider>
+        <FavoritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <NavigationContainer>
+                <Navigation />
+              </NavigationContainer>
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavoritesContextProvider>
       </ThemeProvider>
 
       <ExpoStatusBar style="auto" />

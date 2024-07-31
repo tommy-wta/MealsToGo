@@ -10,6 +10,7 @@ import { Search } from "../components/search.component";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Restaurant } from "../../../services/restaurants/restaurants.context";
 import { StackScreenProps } from "@react-navigation/stack";
+import { FavoritesContext } from "../../../services/favorites/favorites.context";
 
 const Loading = styled(ActivityIndicator)``;
 
@@ -26,9 +27,9 @@ export type RestaurantsScreenProps = StackScreenProps<
 export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({
   navigation,
 }) => {
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const { favorites } = useContext(FavoritesContext);
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
-  console.log(error);
+  console.log(`fav: ${favorites}`);
   return (
     <SafeArea>
       {isLoading && (
