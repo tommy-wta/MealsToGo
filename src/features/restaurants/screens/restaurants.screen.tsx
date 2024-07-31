@@ -11,6 +11,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Restaurant } from "../../../services/restaurants/restaurants.context";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FavoritesContext } from "../../../services/favorites/favorites.context";
+import { FavoritesBar } from "../../../components/favorites/favorites-bar.component";
 
 const Loading = styled(ActivityIndicator)``;
 
@@ -47,6 +48,7 @@ export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({
         isFavoritesToggled={isToggled}
         onFavoritesToggle={() => setIsToggled(!isToggled)}
       />
+      {isToggled && <FavoritesBar />}
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {
