@@ -5,14 +5,17 @@ import { Search } from "../components/search.component";
 import { LocationContext } from "../../../services/location/location.context";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import { MapCallout } from "../components/map-callout.components";
-import { RestaurantsScreenProps } from "../../restaurants/screens/restaurants.screen";
+import { StackScreenProps } from "@react-navigation/stack";
+import { RootStackParamList } from "../../../infrastructure/navigation/map.navigator";
+
+type MapScreenProps = StackScreenProps<RootStackParamList, "Map">;
 
 const Map = styled(MapView)`
   height: 100%;
   width: 100%;
 `;
 
-export const MapScreen: React.FC<RestaurantsScreenProps> = ({ navigation }) => {
+export const MapScreen: React.FC<MapScreenProps> = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants } = useContext(RestaurantsContext);
   const [latDelta, setLatDelta] = useState(0);
