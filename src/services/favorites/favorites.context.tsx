@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useState } from "react";
-import { Restaurant } from "../restaurants/restaurants.context";
+import { Restaurant } from "../../features/restaurants/components/restaurant-info-card.component";
 
 interface FavoritesContextData {
   favorites: Restaurant[];

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FlatList, View } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
@@ -29,6 +29,8 @@ export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({
 }) => {
   const { favorites } = useContext(FavoritesContext);
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+  const [isToggled, setIsToggled] = useState(false);
+
   console.log(`fav: ${favorites}`);
   return (
     <SafeArea>
@@ -41,7 +43,10 @@ export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({
           />
         </View>
       )}
-      <Search />
+      <Search
+        isFavoritesToggled={isToggled}
+        onFavoritesToggle={() => setIsToggled(!isToggled)}
+      />
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {
