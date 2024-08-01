@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { FavoritesContext } from "../../services/favorites/favorites.context";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
-import { Restaurant } from "../../features/restaurants/components/restaurant-info-card.component";
+import { RestaurantInfoTranslated } from "../../features/restaurants/components/restaurant-info-card.component";
 
 const FavoriteButton = styled(TouchableOpacity)`
   position: absolute;
@@ -13,7 +13,7 @@ const FavoriteButton = styled(TouchableOpacity)`
 `;
 
 interface FavoriteIconButtonProps {
-  restaurant: Restaurant;
+  restaurant: RestaurantInfoTranslated;
 }
 
 export const FavoriteIconButton: React.FC<FavoriteIconButtonProps> = ({

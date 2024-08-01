@@ -16,8 +16,8 @@ import { FavoritesBar } from "../../../components/favorites/favorites-bar.compon
 const Loading = styled(ActivityIndicator)``;
 
 export type RootStackParamList = {
-  Restaurants: undefined; // if no parameters for this screen
-  "Restaurant Detail": { restaurant: Restaurant }; // replace 'Restaurant' with the type of your restaurant object
+  Restaurants: undefined;
+  "Restaurant Detail": { restaurant: Restaurant };
 };
 
 export type RestaurantsScreenProps = StackScreenProps<
@@ -48,7 +48,9 @@ export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({
         isFavoritesToggled={isToggled}
         onFavoritesToggle={() => setIsToggled(!isToggled)}
       />
-      {isToggled && <FavoritesBar />}
+      {isToggled && (
+        <FavoritesBar favorites={favorites} goToDetail={navigation.navigate} />
+      )}
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {

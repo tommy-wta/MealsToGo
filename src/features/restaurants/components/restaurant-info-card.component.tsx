@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { View } from "react-native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import openIcon from "../../../../assets/openIcon";
@@ -16,9 +17,8 @@ import {
   Icon,
 } from "./restaurant-info-card.styles";
 import { FavoriteIconButton } from "../../../components/favorites/favorite.component";
-import { Geometry } from "../../../services/location/location.mock";
 
-export interface Restaurant {
+export interface RestaurantInfoTranslated {
   name?: string;
   icon?: string;
   photos?: string[];
@@ -30,7 +30,7 @@ export interface Restaurant {
 }
 
 interface RestaurantInfoProps {
-  restaurant?: Restaurant;
+  restaurant?: RestaurantInfoTranslated;
 }
 
 export const RestaurantInfoCard: FC<RestaurantInfoProps> = ({
@@ -53,8 +53,10 @@ export const RestaurantInfoCard: FC<RestaurantInfoProps> = ({
 
   return (
     <RestaurantCard elevation={5}>
-      <FavoriteIconButton restaurant={restaurant} />
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <View>
+        <FavoriteIconButton restaurant={restaurant} />
+        <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      </View>
       <Info>
         <Text variant="label">{name}</Text>
         <RowSection>
