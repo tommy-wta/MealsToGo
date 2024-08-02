@@ -17,6 +17,7 @@ import {
 } from "@expo-google-fonts/oswald";
 
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -56,17 +57,18 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <FavoritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <NavigationContainer>
-                <Navigation />
-              </NavigationContainer>
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavoritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavoritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <NavigationContainer>
+                  <Navigation />
+                </NavigationContainer>
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavoritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
-
       <ExpoStatusBar style="auto" />
     </>
   );
