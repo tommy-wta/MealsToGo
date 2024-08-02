@@ -55,7 +55,6 @@ export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {
-          console.log(`Item: ${item.name}: ${item.placeId}`);
           return (
             <TouchableOpacity
               onPress={() =>

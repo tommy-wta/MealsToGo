@@ -6,7 +6,6 @@ import { Restaurant } from "../restaurants/restaurants.context";
 export const restaurantsRequest = (
   location: string = "37.7749295,-122.4194155"
 ): Promise<Restaurant[]> => {
-  console.log("In Restaurants Requests");
   return new Promise((resolve, reject) => {
     const mock = mocks[location];
     if (!mock) {
