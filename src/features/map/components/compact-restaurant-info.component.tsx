@@ -1,8 +1,8 @@
 import React from "react";
 import { Platform } from "react-native";
 import styled from "styled-components/native";
-import { Restaurant } from "../../../services/restaurants/restaurants.context";
 import WebView from "react-native-webview";
+import { RestaurantInfoTranslated } from "../../restaurants/components/restaurant-info-card.component";
 
 const MyText = styled.Text``;
 
@@ -27,16 +27,18 @@ const CompactWebview = styled(WebView)`
 const isAndroid = Platform.OS === "android";
 
 interface MapCalloutProps {
-  restaurant: Restaurant;
+  restaurant: RestaurantInfoTranslated;
+  isMap: boolean;
 }
 
 interface ImageProps {
   source: {
     uri: string;
   };
+  isMap: boolean;
 }
 
-const CompactImage: React.FC<ImageProps> = ({ source }) => {
+const CompactImage: React.FC<ImageProps> = ({ source, isMap }) => {
   return isAndroid ? (
     <CompactWebview source={source} />
   ) : (
@@ -46,10 +48,11 @@ const CompactImage: React.FC<ImageProps> = ({ source }) => {
 
 export const CompactRestaurantInfo: React.FC<MapCalloutProps> = ({
   restaurant,
+  isMap,
 }) => {
   return (
     <ContainerView>
-      <CompactImage source={{ uri: restaurant.photos[0] }} />
+      <CompactImage source={{ uri: restaurant.photos[0] }} isMap={isMap} />
       <MyText>{restaurant.name}</MyText>
     </ContainerView>
   );

@@ -21,7 +21,7 @@ import { FavoriteIconButton } from "../../../components/favorites/favorite.compo
 export interface RestaurantInfoTranslated {
   name?: string;
   icon?: string;
-  photos?: string[];
+  photos: string[];
   address?: string;
   isOpenNow?: boolean;
   ratings?: number;
@@ -34,7 +34,11 @@ interface RestaurantInfoProps {
 }
 
 export const RestaurantInfoCard: FC<RestaurantInfoProps> = ({
-  restaurant = {},
+  restaurant = {
+    photos: [
+      "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
+    ],
+  },
 }) => {
   const {
     name = "Example Restaurant",

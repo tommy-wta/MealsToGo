@@ -6,12 +6,13 @@ import {
 import { MapScreen } from "../../features/map/screens/map.screen";
 import { RestaurantDetailScreen } from "../../features/restaurants/screens/restaurant-detail.screen";
 import { Restaurant } from "../../services/restaurants/restaurants.context";
+import { RestaurantInfoTranslated } from "../../features/restaurants/components/restaurant-info-card.component";
 
 const MapStack = createStackNavigator<RootStackParamList>();
 
 export type RootStackParamList = {
-  Map: undefined; // if no parameters for this screen
-  "Restaurant Detail": { restaurant: Restaurant }; // replace 'Restaurant' with the type of your restaurant object
+  MapBase: undefined; // if no parameters for this screen
+  "Restaurant Detail": { restaurant: RestaurantInfoTranslated }; // replace 'Restaurant' with the type of your restaurant object
 };
 
 export const MapNavigator = () => {
@@ -22,7 +23,7 @@ export const MapNavigator = () => {
         ...TransitionPresets.ModalPresentationIOS,
       }}
     >
-      <MapStack.Screen name="Map" component={MapScreen} />
+      <MapStack.Screen name="MapBase" component={MapScreen} />
       <MapStack.Screen
         name="Restaurant Detail"
         component={RestaurantDetailScreen}

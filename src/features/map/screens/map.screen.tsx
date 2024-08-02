@@ -8,7 +8,7 @@ import { MapCallout } from "../components/map-callout.components";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../infrastructure/navigation/map.navigator";
 
-type MapScreenProps = StackScreenProps<RootStackParamList, "Map">;
+type MapScreenProps = StackScreenProps<RootStackParamList, "MapBase">;
 
 const Map = styled(MapView)`
   height: 100%;

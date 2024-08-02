@@ -12,17 +12,18 @@ import { Restaurant } from "../../../services/restaurants/restaurants.context";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FavoritesContext } from "../../../services/favorites/favorites.context";
 import { FavoritesBar } from "../../../components/favorites/favorites-bar.component";
+import { RestaurantInfoTranslated } from "../components/restaurant-info-card.component";
 
 const Loading = styled(ActivityIndicator)``;
 
 export type RootStackParamList = {
-  Restaurants: undefined;
-  "Restaurant Detail": { restaurant: Restaurant };
+  RestaurantsBase: undefined;
+  "Restaurant Detail": { restaurant: RestaurantInfoTranslated };
 };
 
 export type RestaurantsScreenProps = StackScreenProps<
   RootStackParamList,
-  "Restaurants"
+  "RestaurantsBase"
 >;
 
 export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({

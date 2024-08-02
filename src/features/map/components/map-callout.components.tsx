@@ -8,5 +8,5 @@ interface MapCalloutProps {
 }
 
 export const MapCallout: React.FC<MapCalloutProps> = ({ restaurant }) => {
-  return <CompactRestaurantInfo restaurant={restaurant} />;
+  return <CompactRestaurantInfo isMap={true} restaurant={restaurant} />;
 };
