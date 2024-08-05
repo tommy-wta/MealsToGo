@@ -6,6 +6,7 @@ interface AuthenticationContextData {
   user: User | null;
   isLoading: boolean;
   error?: Error;
+  isAuthenticated: boolean;
   onLogin: () => void;
 }
 
@@ -19,6 +20,7 @@ export const AuthenticationContext = createContext<AuthenticationContextData>({
   user: {},
   isLoading: false,
   error: Error("Error"),
+  isAuthenticated: false,
   onLogin: () => {},
 });
 
@@ -49,6 +51,7 @@ export const AuthenticationContextProvider = ({
         user: user,
         isLoading: isLoading,
         error: error,
+        isAuthenticated: !!user,
         onLogin: () => {},
       }}
     >

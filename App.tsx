@@ -9,7 +9,6 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { Navigation } from "./src/infrastructure/navigation";
 import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 import { getApps, initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import {
   useFonts as useOswald,
@@ -34,25 +33,12 @@ if (!getApps().length) {
 }
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const auth = getAuth();
-  useEffect(() => {
-    signInWithEmailAndPassword(auth, "test@rn.com", "abc123")
-      .then((user) => {
-        setIsAuthenticated(true);
-      })
-      .catch((error) => {
-        console.log(`Error occured!: ${error}`);
-      });
-  }, []);
   const [oswaldFontLoaded] = useOswald({ Oswald_400Regular });
   const [latoFontLoaded] = useLato({ Lato_400Regular });
 
   if (!oswaldFontLoaded || !latoFontLoaded) {
     return null;
   }
-
-  if (!isAuthenticated) return null;
 
   return (
     <>

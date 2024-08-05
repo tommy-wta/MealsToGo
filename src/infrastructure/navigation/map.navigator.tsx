@@ -5,7 +5,6 @@ import {
 } from "@react-navigation/stack";
 import { MapScreen } from "../../features/map/screens/map.screen";
 import { RestaurantDetailScreen } from "../../features/restaurants/screens/restaurant-detail.screen";
-import { Restaurant } from "../../services/restaurants/restaurants.context";
 import { RestaurantInfoTranslated } from "../../features/restaurants/components/restaurant-info-card.component";
 
 const MapStack = createStackNavigator<RootStackParamList>();
