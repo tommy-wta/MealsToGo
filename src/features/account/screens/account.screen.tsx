@@ -22,7 +22,7 @@ export const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
         </AuthButton>
         <Spacer size="large">
           <AuthButton
-            icon="lock-open-outline"
+            icon="email"
             mode="contained"
             onPress={() => navigation.navigate("RegisterScreen")}
           >

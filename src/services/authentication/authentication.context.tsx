@@ -5,9 +5,9 @@ import { getAuth, UserCredential } from "firebase/auth";
 interface AuthenticationContextData {
   user: User | null;
   isLoading: boolean;
-  error?: Error;
+  error?: string;
   isAuthenticated: boolean;
-  onLogin: () => void;
+  onLogin: (email: string, password: string) => void;
 }
 
 interface User {}
@@ -19,7 +19,7 @@ interface AuthenticationContextProviderProps {
 export const AuthenticationContext = createContext<AuthenticationContextData>({
   user: {},
   isLoading: false,
-  error: Error("Error"),
+  error: "Error",
   isAuthenticated: false,
   onLogin: () => {},
 });
@@ -38,10 +38,12 @@ export const AuthenticationContextProvider = ({
       .then((user) => {
         setUser(user);
         setIsLoading(false);
+        console.log("Login success");
       })
       .catch((error) => {
         setIsLoading(false);
         setError(error.toString());
+        console.log(`Error logging in: ${error.toString()}`);
       });
   };
 
@@ -52,7 +54,7 @@ export const AuthenticationContextProvider = ({
         isLoading: isLoading,
         error: error,
         isAuthenticated: !!user,
-        onLogin: () => {},
+        onLogin: onLogin,
       }}
     >
       {children}
