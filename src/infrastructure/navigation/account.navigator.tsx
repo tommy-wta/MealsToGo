@@ -18,6 +18,11 @@ export type AccountScreenProps = StackScreenProps<
   "AccountScreen"
 >;
 
+export type LoginScreenProps = StackScreenProps<
+  AccountRootStackParamList,
+  "LoginScreen"
+>;
+
 export const AccountNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

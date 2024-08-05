@@ -4,6 +4,7 @@ import {
   AccountContainer,
   AccountCover,
   AuthButton,
+  Title,
 } from "../components/account.styles";
 import { AccountScreenProps } from "../../../infrastructure/navigation/account.navigator";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -12,6 +13,7 @@ export const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
+      <Title>Meals To Go</Title>
       <AccountContainer>
         <AuthButton
           icon="lock-open-outline"
