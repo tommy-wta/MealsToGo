@@ -5,7 +5,7 @@ import { getAuth, onAuthStateChanged, User, signOut } from "firebase/auth";
 interface AuthenticationContextData {
   user: User | null;
   isLoading: boolean;
-  error?: string;
+  error: string | null;
   isAuthenticated: boolean;
   onLogin: (email: string, password: string) => void;
   onRegister: (
@@ -35,7 +35,7 @@ export const AuthenticationContextProvider = ({
 }: AuthenticationContextProviderProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [error, setError] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string | null>(null);
   const auth = useRef(getAuth()).current;
 
   auth.onAuthStateChanged((usr) => {
@@ -89,6 +89,10 @@ export const AuthenticationContextProvider = ({
 
   const onLogout = async () => {
     console.log("signing out of auth");
+    signOut(auth).then(() => {
+      setUser(null);
+      setError(null);
+    });
     try {
       await signOut(auth);
       console.log("signed out successfully");
