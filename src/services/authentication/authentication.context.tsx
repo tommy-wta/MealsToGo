@@ -1,6 +1,6 @@
 import React, { createContext, useState, ReactNode, useRef } from "react";
-import { loginRequest, registerRequeast } from "./authentication.service";
-import { getAuth, UserCredential } from "firebase/auth";
+import { loginRequest, registerRequest } from "./authentication.service";
+import { getAuth, onAuthStateChanged, User, signOut } from "firebase/auth";
 
 interface AuthenticationContextData {
   user: User | null;
@@ -13,36 +13,46 @@ interface AuthenticationContextData {
     password: string,
     repeatedPassword: string
   ) => void;
+  onLogout: () => void;
 }
-
-interface User {}
 
 interface AuthenticationContextProviderProps {
   children: ReactNode;
 }
 
 export const AuthenticationContext = createContext<AuthenticationContextData>({
-  user: {},
+  user: null,
   isLoading: false,
   error: "Error",
   isAuthenticated: false,
   onLogin: () => {},
   onRegister: () => {},
+  onLogout: () => {},
 });
 
 export const AuthenticationContextProvider = ({
   children,
 }: AuthenticationContextProviderProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState<UserCredential | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string | undefined>(undefined);
   const auth = useRef(getAuth()).current;
+
+  auth.onAuthStateChanged((usr) => {
+    if (usr) {
+      console.log(`printing usr: ${usr}`);
+      setUser(usr);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
 
   const onLogin = (email: string, password: string) => {
     setIsLoading(true);
     loginRequest(auth, email, password)
       .then((user) => {
-        setUser(user);
+        setUser(user.user);
         setIsLoading(false);
         console.log("Login success");
       })
@@ -63,9 +73,9 @@ export const AuthenticationContextProvider = ({
       setError("Error: Passwords do not match!");
       return;
     } else {
-      registerRequeast(auth, email, password)
+      registerRequest(auth, email, password)
         .then((user) => {
-          setUser(user);
+          setUser(user.user);
           setIsLoading(false);
           console.log("Login success");
         })
@@ -74,6 +84,17 @@ export const AuthenticationContextProvider = ({
           setError(error.toString());
           console.log(`Error logging in: ${error.toString()}`);
         });
+    }
+  };
+
+  const onLogout = async () => {
+    console.log("signing out of auth");
+    try {
+      await signOut(auth);
+      console.log("signed out successfully");
+      setUser(null);
+    } catch (error) {
+      console.error("Error signing out: ", error);
     }
   };
 
@@ -86,6 +107,7 @@ export const AuthenticationContextProvider = ({
         isAuthenticated: !!user,
         onLogin: onLogin,
         onRegister: onRegister,
+        onLogout: onLogout,
       }}
     >
       {children}

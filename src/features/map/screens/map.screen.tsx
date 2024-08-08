@@ -22,9 +22,6 @@ export const MapScreen: React.FC<MapScreenProps> = ({ navigation }) => {
   const { lat, lng, viewPort } = location;
 
   useEffect(() => {
-    console.log(viewPort.northeast);
-    console.log(viewPort.southwest);
-
     const northEastLat = viewPort.northeast.lat;
     const southWestLat = viewPort.southwest.lat;
 

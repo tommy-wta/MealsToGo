@@ -33,7 +33,6 @@ export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
   const [isToggled, setIsToggled] = useState(false);
 
-  console.log(`fav: ${favorites}`);
   return (
     <SafeArea>
       {isLoading && (

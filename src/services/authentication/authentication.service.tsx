@@ -8,7 +8,7 @@ export const loginRequest = (auth: Auth, email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
-export const registerRequeast = (
+export const registerRequest = (
   auth: Auth,
   email: string,
   password: string

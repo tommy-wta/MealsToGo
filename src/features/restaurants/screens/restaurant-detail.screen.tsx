@@ -22,8 +22,6 @@ export const RestaurantDetailScreen: React.FC<RestaurantDetailScreenProps> = ({
   const [drinksExpanded, setDrinksExpanded] = useState(true);
 
   const { restaurant } = route.params;
-  console.log(`route: ${route.name} ${route.key} ${route.path}`);
-  console.log(`Detail: ${restaurant}`);
   return (
     <SafeArea>
       <RestaurantInfoCard restaurant={restaurant} />
