@@ -1,5 +1,5 @@
 import React, { createContext, useState, ReactNode, useRef } from "react";
-import { loginRequest } from "./authentication.service";
+import { loginRequest, registerRequeast } from "./authentication.service";
 import { getAuth, UserCredential } from "firebase/auth";
 
 interface AuthenticationContextData {
@@ -8,6 +8,11 @@ interface AuthenticationContextData {
   error?: string;
   isAuthenticated: boolean;
   onLogin: (email: string, password: string) => void;
+  onRegister: (
+    email: string,
+    password: string,
+    repeatedPassword: string
+  ) => void;
 }
 
 interface User {}
@@ -22,6 +27,7 @@ export const AuthenticationContext = createContext<AuthenticationContextData>({
   error: "Error",
   isAuthenticated: false,
   onLogin: () => {},
+  onRegister: () => {},
 });
 
 export const AuthenticationContextProvider = ({
@@ -29,7 +35,7 @@ export const AuthenticationContextProvider = ({
 }: AuthenticationContextProviderProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState<UserCredential | null>(null);
-  const [error, setError] = useState(undefined);
+  const [error, setError] = useState<string | undefined>(undefined);
   const auth = useRef(getAuth()).current;
 
   const onLogin = (email: string, password: string) => {
@@ -47,6 +53,30 @@ export const AuthenticationContextProvider = ({
       });
   };
 
+  const onRegister = (
+    email: string,
+    password: string,
+    repeatedPassword: string
+  ) => {
+    setIsLoading(true);
+    if (password !== repeatedPassword) {
+      setError("Error: Passwords do not match!");
+      return;
+    } else {
+      registerRequeast(auth, email, password)
+        .then((user) => {
+          setUser(user);
+          setIsLoading(false);
+          console.log("Login success");
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setError(error.toString());
+          console.log(`Error logging in: ${error.toString()}`);
+        });
+    }
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -55,6 +85,7 @@ export const AuthenticationContextProvider = ({
         error: error,
         isAuthenticated: !!user,
         onLogin: onLogin,
+        onRegister: onRegister,
       }}
     >
       {children}

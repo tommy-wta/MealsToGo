@@ -23,6 +23,11 @@ export type LoginScreenProps = StackScreenProps<
   "LoginScreen"
 >;
 
+export type RegisterScreenProps = StackScreenProps<
+  AccountRootStackParamList,
+  "RegisterScreen"
+>;
+
 export const AccountNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
