@@ -38,7 +38,7 @@ interface ImageProps {
   isMap: boolean;
 }
 
-const CompactImage: React.FC<ImageProps> = ({ source, isMap }) => {
+export const CompactImage: React.FC<ImageProps> = ({ source, isMap }) => {
   return isAndroid ? (
     <CompactWebview source={source} />
   ) : (
