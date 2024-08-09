@@ -31,6 +31,7 @@ export const MyTabs = () => {
               },
               tabBarActiveTintColor: "tomato",
               tabBarInactiveTintColor: "gray",
+              headerShown: false,
             })}
           >
             <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />

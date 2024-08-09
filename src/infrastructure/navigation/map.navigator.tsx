@@ -18,11 +18,14 @@ export const MapNavigator = () => {
   return (
     <MapStack.Navigator
       screenOptions={{
-        headerShown: false,
         ...TransitionPresets.ModalPresentationIOS,
       }}
     >
-      <MapStack.Screen name="MapBase" component={MapScreen} />
+      <MapStack.Screen
+        options={{ headerTitle: "Map" }}
+        name="MapBase"
+        component={MapScreen}
+      />
       <MapStack.Screen
         name="Restaurant Detail"
         component={RestaurantDetailScreen}

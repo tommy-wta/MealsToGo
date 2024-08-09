@@ -22,16 +22,12 @@ export const SettingsNavigator = () => {
       }}
     >
       <SettingsStack.Screen
-        options={{ header: () => null }}
+        options={{ headerTitle: "Settings" }}
         name="SettingsBase"
         component={SettingsScreen}
       />
 
-      <SettingsStack.Screen
-        options={{ header: () => null }}
-        name="Favorites"
-        component={FavoritesScreen}
-      />
+      <SettingsStack.Screen name="Favorites" component={FavoritesScreen} />
     </SettingsStack.Navigator>
   );
 };
