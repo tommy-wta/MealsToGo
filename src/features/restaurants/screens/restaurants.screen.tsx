@@ -8,11 +8,11 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 import { theme } from "../../../infrastructure/theme";
 import { Search } from "../components/search.component";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Restaurant } from "../../../services/restaurants/restaurants.context";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FavoritesContext } from "../../../services/favorites/favorites.context";
 import { FavoritesBar } from "../../../components/favorites/favorites-bar.component";
 import { RestaurantInfoTranslated } from "../components/restaurant-info-card.component";
+import { FadeInView } from "../../../components/animations/fade.animation";
 
 const Loading = styled(ActivityIndicator)``;
 
@@ -60,7 +60,9 @@ export const RestaurantsScreen: React.FC<RestaurantsScreenProps> = ({
                 navigation.navigate("Restaurant Detail", { restaurant: item })
               }
             >
-              <RestaurantInfoCard restaurant={item} />
+              <FadeInView>
+                <RestaurantInfoCard restaurant={item} />
+              </FadeInView>
             </TouchableOpacity>
           );
         }}
